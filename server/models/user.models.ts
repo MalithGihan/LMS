@@ -6,6 +6,7 @@ import jwt from 'jsonwebtoken'
 const emailRegexPattern: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export interface IUser extends Document {
+  _id:string
   name: string;
   email: string;
   password: string;
@@ -17,8 +18,8 @@ export interface IUser extends Document {
   isVerified: boolean;
   courses: Array<{ courseId: string }>;
   comparePassword: (password: string) => Promise<boolean>;
-  signAccessToken: () => string
-  signRefreshToken: () => string
+  SignAccessToken: () => string
+  SignRefreshToken: () => string
 }
 
 const userSchema: Schema<IUser> = new mongoose.Schema(
@@ -75,7 +76,17 @@ userSchema.pre<IUser>("save", async function (next) {
 });
 
 //Sign access token
+userSchema.methods.SignAccessToken = function () {
+  return jwt.sign({id: this._id}, process.env.ACCESS_TOKEN || '',{
+    expiresIn :"5m" 
+  })
+}
 
+userSchema.methods.SignRefreshToken = function () {
+  return jwt.sign({id: this._id}, process.env.REFRESH_TOKEN || '',{
+    expiresIn: "3d"
+  })
+}
 
 //Compare password
 userSchema.methods.comparePassword = async function (

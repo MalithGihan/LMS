@@ -346,7 +346,7 @@ export const updatePassword = CatchAsyncError(
 
       user.password = newPassword;
 
-      await user?.save();
+      await user.save();
 
       await redis.set(req.user?._id as string, JSON.stringify(user));
 
@@ -371,7 +371,7 @@ export const updateProfilePicture = CatchAsyncError(
 
       const userId = req.user?._id as string;
 
-      const user = req.user;
+      const user = await userModel.findById(userId)
 
       if (avatar && user) {
         if (user?.avatar?.public_id) {

@@ -8,7 +8,7 @@ export const ErrorMiddleware = (
   res: Response,
   next: NextFunction
 ) => {
-  err.statusCode = err.statusCode || 5000;
+  err.statusCode = err.statusCode || 500;
   err.message = err.message || "Internal Server Error";
 
   if (err.name === "CastError") {

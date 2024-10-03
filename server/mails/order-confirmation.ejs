@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f6f6f6;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            color: #4CAF50;
+        }
+        .content {
+            line-height: 1.6;
+        }
+        .content p {
+            margin: 0 0 10px;
+        }
+        .order-details {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+        }
+        .order-details h2 {
+            margin-top: 0;
+            color: #4CAF50;
+        }
+        .order-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .order-table th, .order-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .order-table th {
+            background-color: #f2f2f2;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.8em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Order Confirmation</h1>
+        </div>
+        <div class="content">
+            <p>Hello,</p>
+            <p>Thank you for your order. Here are the details:</p>
+            <div class="order-details">
+                <h2>Order Summary</h2>
+                <table class="order-table">
+                    <tr>
+                        <th>Order ID</th>
+                        <td><%= order._id %></td>
+                    </tr>
+                    <tr>
+                        <th>Course Name</th>
+                        <td><%= order.name %></td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td>$<%= order.price %></td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td><%= order.date %></td>
+                    </tr>
+                    <tr>
+                        <th>Subtotal</th>
+                        <td>$<%= order.price %></td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td class="total">$<%= order.price %></td>
+                    </tr>
+                </table>
+            </div>
+            <p>If you have any questions, feel free to contact our support team.</p>
+            <p>Thank you for choosing our service!</p>
+        </div>
+        <div class="footer">
+            <p>&copy; 2024 Our Service. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>
